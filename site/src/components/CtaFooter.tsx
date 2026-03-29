@@ -1,7 +1,7 @@
 export default function CtaFooter() {
   return (
     <>
-      <section className="py-24 px-6 bg-card">
+      <section className="py-24 px-6 bg-muted">
         <div className="max-w-3xl mx-auto">
           <h2 className="font-display text-4xl sm:text-5xl font-bold text-foreground mb-6">
             Stop dodging the mirror, bro
@@ -13,7 +13,7 @@ export default function CtaFooter() {
 
           <a
             href="#"
-            className="inline-flex items-center justify-center px-10 py-4 bg-primary text-primary-foreground text-lg font-semibold rounded-lg hover:opacity-90 transition-opacity"
+            className="inline-flex items-center justify-center px-10 py-4 bg-foreground text-background text-lg font-semibold rounded-lg hover:opacity-90 transition-opacity"
           >
             Get mogged now
           </a>

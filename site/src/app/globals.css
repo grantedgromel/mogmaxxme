@@ -1,35 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
 @import "tailwindcss";
 
 :root {
-  --card: #f7f8f8;
-  --ring: #1da1f2;
-  --input: #f7f9fa;
-  --muted: #E5E5E6;
-  --accent: #E3ECF6;
-  --border: #e1eaef;
-  --radius: 1.3rem;
-  --chart-1: #1e9df1;
-  --chart-2: #00b87a;
-  --chart-3: #f7b928;
-  --chart-4: #17bf63;
-  --chart-5: #e0245e;
+  --card: #ffffff;
+  --ring: #a1a1a1;
+  --input: #e5e5e5;
+  --muted: #f5f5f5;
+  --accent: #f5f5f5;
+  --border: #e5e5e5;
+  --radius: 0.625rem;
+  --chart-1: #91c5ff;
+  --chart-2: #3a81f6;
+  --chart-3: #2563ef;
+  --chart-4: #1a4eda;
+  --chart-5: #1f3fad;
   --popover: #ffffff;
-  --primary: #1e9df1;
-  --sidebar: #f7f8f8;
-  --font-sans: 'DM Sans', sans-serif;
-  --font-display: 'Fraunces', serif;
-  --secondary: #0f1419;
-  --background: #fafbfc;
-  --foreground: #0f1419;
-  --destructive: #f4212e;
-  --shadow-color: rgba(29,161,242,0.15);
-  --card-foreground: #0f1419;
-  --muted-foreground: #536471;
-  --accent-foreground: #1e9df1;
-  --popover-foreground: #0f1419;
-  --primary-foreground: #ffffff;
-  --secondary-foreground: #ffffff;
+  --primary: #171717;
+  --sidebar: #fafafa;
+  --spacing: 0.25rem;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Futura', 'Futura Display', 'Century Gothic', 'CenturyGothic', 'Apple SD Gothic Neo', sans-serif;
+  --secondary: #f5f5f5;
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --destructive: #e7000b;
+  --card-foreground: #0a0a0a;
+  --muted-foreground: #737373;
+  --accent-foreground: #171717;
+  --popover-foreground: #0a0a0a;
+  --primary-foreground: #fafafa;
+  --secondary-foreground: #171717;
   --destructive-foreground: #ffffff;
 
   --tier-s: #d4a017;
@@ -41,26 +42,25 @@
 }
 
 .dark {
-  --card: #17181c;
-  --ring: #1da1f2;
-  --input: #22303c;
-  --muted: #181818;
-  --accent: #061622;
-  --border: #242628;
-  --popover: #0a0a0b;
-  --primary: #1c9cf0;
-  --sidebar: #17181c;
-  --secondary: #f0f3f4;
-  --background: #0a0a0b;
-  --foreground: #e7e9ea;
-  --destructive: #f4212e;
-  --shadow-color: rgba(29,161,242,0.25);
-  --card-foreground: #d9d9d9;
-  --muted-foreground: #72767a;
-  --accent-foreground: #1c9cf0;
-  --popover-foreground: #e7e9ea;
-  --primary-foreground: #ffffff;
-  --secondary-foreground: #0f1419;
+  --card: #0a0a0a;
+  --ring: #525252;
+  --input: #262626;
+  --muted: #262626;
+  --accent: #262626;
+  --border: #262626;
+  --popover: #0a0a0a;
+  --primary: #fafafa;
+  --sidebar: #0a0a0a;
+  --secondary: #262626;
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --destructive: #e7000b;
+  --card-foreground: #fafafa;
+  --muted-foreground: #a1a1a1;
+  --accent-foreground: #fafafa;
+  --popover-foreground: #fafafa;
+  --primary-foreground: #0a0a0a;
+  --secondary-foreground: #fafafa;
   --destructive-foreground: #ffffff;
 }
 
@@ -117,4 +117,29 @@ body {
 
 .fade-up {
   animation: fade-up 0.5s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+/* Modal overlay */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fade-in 0.2s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+@keyframes scale-up {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.scale-up {
+  animation: scale-up 0.25s cubic-bezier(0.25, 1, 0.5, 1) both;
 }

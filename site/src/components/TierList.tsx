@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface Archetype {
   tier: string;
@@ -44,7 +44,7 @@ const archetypes: Archetype[] = [
     name: "Semi-Athletic Bro",
     image: "/archetypes/B-Tier Semi-Athletic Bro.png",
     description:
-      "This guy was either the star receiver in high school or just hit the genetic lottery and coasted. The leanness is there, the frame suggests potential, but the lack of any real mass says he hasn't touched a barbell since PE class. Living off metabolism and vibes. A long, long way from the Gigachad throne, but at least he's not actively moving away from it.",
+      "This guy either peaked as the star receiver in high school or just hit the genetic lottery and coasted ever since. The leanness is there, the frame suggests potential, but the lack of any real mass says he hasn't touched a barbell since PE class. Living off metabolism and vibes. A long, long way from the Gigachad throne, but at least he's not actively moving away from it.",
   },
   {
     tier: "B",
@@ -72,14 +72,14 @@ const archetypes: Archetype[] = [
     name: "Dad Bod Boomer",
     image: "/archetypes/D-Tier Dad Bod Boomer.png",
     description:
-      "This man peaked when Reagan was in office and the mustache confirms it. The tank top is doing a lot of heavy lifting -- more than he's done in decades. Somewhere under the dad bod is a guy who used to arm wrestle his buddies at the bar. That guy is retired now. So is the metabolism.",
+      "This man peaked sometime around the first iPhone launch and the mustache confirms it. The tank top is doing a lot of heavy lifting -- more than he's done in years. Somewhere under the dad bod is a guy who used to arm wrestle his buddies at the bar. That guy clocked out a long time ago. So did the metabolism.",
   },
   {
     tier: "D",
     name: "Discord Mod Bro",
     image: "/archetypes/D-Tier Discord Mod Bro.png",
     description:
-      'This guy looks like he moderates three anime servers and hasn\'t seen sunlight since the Obama administration. The physique says "my cardio is walking to the fridge" and the expression says he knows it. Time to log off, close the laptop, and find out what grass feels like. The gym is right there, bro. It\'s been right there the whole time.',
+      'This guy looks like he moderates three anime servers and hasn\'t touched grass since COVID lockdowns ended. The physique says "my cardio is walking to the fridge" and the expression says he knows it. Time to log off, close the laptop, and find out what sunlight feels like. The gym is right there, bro. It\'s been right there the whole time.',
   },
   {
     tier: "D",
@@ -100,16 +100,27 @@ const archetypes: Archetype[] = [
 const tiers = ["S", "A", "B", "C", "D", "F"] as const;
 
 const tierConfig: Record<string, { bg: string; label: string; text: string }> = {
-  S: { bg: "bg-tier-s/15", label: "bg-tier-s", text: "text-tier-s" },
-  A: { bg: "bg-tier-a/15", label: "bg-tier-a", text: "text-tier-a" },
-  B: { bg: "bg-tier-b/15", label: "bg-tier-b", text: "text-tier-b" },
-  C: { bg: "bg-tier-c/15", label: "bg-tier-c", text: "text-tier-c" },
-  D: { bg: "bg-tier-d/15", label: "bg-tier-d", text: "text-tier-d" },
-  F: { bg: "bg-tier-f/15", label: "bg-tier-f", text: "text-tier-f" },
+  S: { bg: "bg-tier-s/10", label: "bg-tier-s", text: "text-tier-s" },
+  A: { bg: "bg-tier-a/10", label: "bg-tier-a", text: "text-tier-a" },
+  B: { bg: "bg-tier-b/10", label: "bg-tier-b", text: "text-tier-b" },
+  C: { bg: "bg-tier-c/10", label: "bg-tier-c", text: "text-tier-c" },
+  D: { bg: "bg-tier-d/10", label: "bg-tier-d", text: "text-tier-d" },
+  F: { bg: "bg-tier-f/10", label: "bg-tier-f", text: "text-tier-f" },
 };
 
 export default function TierList() {
   const [selected, setSelected] = useState<Archetype | null>(null);
+
+  const close = useCallback(() => setSelected(null), []);
+
+  useEffect(() => {
+    if (!selected) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [selected, close]);
 
   return (
     <section id="tier-list" className="py-24 px-6">
@@ -141,49 +152,63 @@ export default function TierList() {
                 </div>
 
                 <div className="flex gap-2 sm:gap-3 p-3 flex-wrap">
-                  {members.map((archetype) => {
-                    const isSelected = selected?.name === archetype.name;
-                    return (
-                      <button
-                        key={archetype.name}
-                        onClick={() =>
-                          setSelected(isSelected ? null : archetype)
-                        }
-                        className={`group flex flex-col items-center cursor-pointer transition-all duration-200 ${
-                          isSelected ? "scale-105" : "hover:scale-105"
-                        }`}
-                      >
-                        <div
-                          className={`w-14 h-14 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-colors duration-200 bg-card ${
-                            isSelected
-                              ? "border-primary"
-                              : "border-transparent hover:border-primary/40"
-                          }`}
-                        >
-                          <Image
-                            src={archetype.image}
-                            alt={archetype.name}
-                            width={80}
-                            height={80}
-                            className="w-full h-full object-contain p-0.5"
-                          />
-                        </div>
-                        <span className="text-[10px] sm:text-xs mt-1.5 text-muted-foreground text-center leading-tight max-w-[3.5rem] sm:max-w-[5rem]">
-                          {archetype.name}
-                        </span>
-                      </button>
-                    );
-                  })}
+                  {members.map((archetype) => (
+                    <button
+                      key={archetype.name}
+                      onClick={() => setSelected(archetype)}
+                      className="group flex flex-col items-center cursor-pointer transition-transform duration-200 hover:scale-105"
+                    >
+                      <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 border-transparent hover:border-foreground/20 transition-colors duration-200 bg-card">
+                        <Image
+                          src={archetype.image}
+                          alt={archetype.name}
+                          width={80}
+                          height={80}
+                          className="w-full h-full object-contain p-0.5"
+                        />
+                      </div>
+                      <span className="text-[10px] sm:text-xs mt-1.5 text-muted-foreground text-center leading-tight max-w-[3.5rem] sm:max-w-[5rem]">
+                        {archetype.name}
+                      </span>
+                    </button>
+                  ))}
                 </div>
               </div>
             );
           })}
         </div>
+      </div>
 
-        {selected && (
-          <div className="mt-8 rounded-xl border border-border bg-card p-6 sm:p-8 fade-up">
-            <div className="flex flex-col sm:flex-row gap-6 items-start">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 shrink-0 rounded-lg overflow-hidden border border-border bg-background p-2">
+      {/* Modal overlay */}
+      {selected && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 fade-in"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) close();
+          }}
+        >
+          <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
+
+          <div className="relative w-full max-w-lg rounded-xl border border-border bg-card p-6 sm:p-8 shadow-lg scale-up">
+            <button
+              onClick={close}
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Close"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M5 5l10 10M15 5L5 15" />
+              </svg>
+            </button>
+
+            <div className="flex gap-5 items-start">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 shrink-0 rounded-lg overflow-hidden border border-border bg-muted p-2">
                 <Image
                   src={selected.image}
                   alt={selected.name}
@@ -192,10 +217,10 @@ export default function TierList() {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-3">
+              <div className="flex-1 min-w-0 pt-1">
+                <div className="flex items-center gap-2.5 mb-1">
                   <span
-                    className={`text-sm font-bold px-2 py-0.5 rounded ${
+                    className={`text-xs font-bold px-2 py-0.5 rounded ${
                       tierConfig[selected.tier].label
                     } text-white`}
                   >
@@ -205,21 +230,15 @@ export default function TierList() {
                     {selected.name}
                   </h3>
                 </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  {selected.description}
-                </p>
               </div>
-              <button
-                onClick={() => setSelected(null)}
-                className="text-muted-foreground hover:text-foreground transition-colors text-sm self-start"
-                aria-label="Close"
-              >
-                Close
-              </button>
             </div>
+
+            <p className="text-muted-foreground leading-relaxed mt-5">
+              {selected.description}
+            </p>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 }

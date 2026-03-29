@@ -1,6 +1,6 @@
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 px-6 bg-card">
+    <section id="how-it-works" className="py-24 px-6 bg-muted">
       <div className="max-w-5xl mx-auto">
         <div className="max-w-2xl mb-16">
           <h2 className="font-display text-4xl sm:text-5xl font-bold text-foreground mb-4">
@@ -13,7 +13,7 @@ export default function HowItWorks() {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-12 gap-y-10">
           <div>
-            <span className="text-sm font-semibold text-primary mb-3 block">
+            <span className="text-sm font-semibold text-muted-foreground mb-3 block">
               01
             </span>
             <h3 className="font-display text-xl font-bold text-foreground mb-2">
@@ -26,7 +26,7 @@ export default function HowItWorks() {
           </div>
 
           <div>
-            <span className="text-sm font-semibold text-primary mb-3 block">
+            <span className="text-sm font-semibold text-muted-foreground mb-3 block">
               02
             </span>
             <h3 className="font-display text-xl font-bold text-foreground mb-2">
@@ -39,7 +39,7 @@ export default function HowItWorks() {
           </div>
 
           <div>
-            <span className="text-sm font-semibold text-primary mb-3 block">
+            <span className="text-sm font-semibold text-muted-foreground mb-3 block">
               03
             </span>
             <h3 className="font-display text-xl font-bold text-foreground mb-2">
