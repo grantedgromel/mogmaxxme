@@ -13,11 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark h-full antialiased" suppressHydrationWarning>
-      <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
-        <div className="scanlines" />
-        {children}
-      </body>
+    <html lang="en" className="dark h-full" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
