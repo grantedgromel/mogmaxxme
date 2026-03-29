@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --card: #073642;
+  --ring: #d33682;
+  --input: #586e75;
+  --muted: #586e75;
+  --accent: #cb4b16;
+  --border: #586e75;
+  --radius: 0.25rem;
+  --chart-1: #268bd2;
+  --chart-2: #2aa198;
+  --chart-3: #d33682;
+  --chart-4: #cb4b16;
+  --chart-5: #dc322f;
+  --popover: #073642;
+  --primary: #d33682;
+  --sidebar: #002b36;
+  --secondary: #2aa198;
+  --background: #002b36;
+  --foreground: #93a1a1;
+  --destructive: #dc322f;
+  --font-mono: 'Space Mono', monospace;
+  --font-sans: 'Outfit', sans-serif;
+
+  --tier-s: #ffd700;
+  --tier-a: #22c55e;
+  --tier-b: #3b82f6;
+  --tier-c: #eab308;
+  --tier-d: #f97316;
+  --tier-f: #ef4444;
+}
+
+@theme inline {
+  --color-card: var(--card);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-destructive: var(--destructive);
+  --color-card-foreground: #93a1a1;
+  --color-primary-foreground: #ffffff;
+  --color-secondary-foreground: #ffffff;
+  --color-accent-foreground: #ffffff;
+  --color-muted-foreground: #93a1a1;
+
+  --color-tier-s: var(--tier-s);
+  --color-tier-a: var(--tier-a);
+  --color-tier-b: var(--tier-b);
+  --color-tier-c: var(--tier-c);
+  --color-tier-d: var(--tier-d);
+  --color-tier-f: var(--tier-f);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* Scanline overlay */
+.scanlines {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.08) 0px,
+    rgba(0, 0, 0, 0.08) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* CRT glow effect */
+.crt-glow {
+  text-shadow:
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 20px currentColor;
+}
+
+/* Glitch animation for hero title */
+@keyframes glitch {
+  0%, 100% {
+    transform: translate(0);
+    text-shadow: -2px 0 #d33682, 2px 0 #2aa198;
+  }
+  20% {
+    transform: translate(-2px, 2px);
+    text-shadow: 2px 0 #d33682, -2px 0 #2aa198;
+  }
+  40% {
+    transform: translate(-2px, -2px);
+    text-shadow: 2px 0 #2aa198, -2px 0 #d33682;
+  }
+  60% {
+    transform: translate(2px, 2px);
+    text-shadow: -2px 0 #cb4b16, 2px 0 #2aa198;
+  }
+  80% {
+    transform: translate(2px, -2px);
+    text-shadow: 2px 0 #d33682, -2px 0 #cb4b16;
+  }
+}
+
+.glitch-text {
+  animation: glitch 3s infinite;
+}
+
+/* Pulse glow for CTA */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px #d33682, 0 0 15px #d33682, 0 0 30px rgba(211, 54, 130, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 10px #d33682, 0 0 25px #d33682, 0 0 50px rgba(211, 54, 130, 0.5);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Arcade border styling */
+.arcade-border {
+  border: 2px solid #586e75;
+  box-shadow:
+    inset 0 0 15px rgba(0, 43, 54, 0.8),
+    0 0 8px rgba(211, 54, 130, 0.3);
+}
+
+/* Tier row glow on hover */
+.tier-row {
+  transition: all 0.3s ease;
+}
+.tier-row:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 15px rgba(211, 54, 130, 0.2);
+}
+
+/* Pixel art rendering */
+.pixel-art {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Flicker animation for arcade feel */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.8; }
+  94% { opacity: 1; }
+  96% { opacity: 0.9; }
+  97% { opacity: 1; }
+}
+
+.flicker {
+  animation: flicker 4s infinite;
+}
+
+/* VS screen flash */
+@keyframes vs-pulse {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 10px #d33682, 0 0 20px #d33682;
+  }
+  50% {
+    transform: scale(1.1);
+    text-shadow: 0 0 20px #d33682, 0 0 40px #d33682, 0 0 60px #d33682;
+  }
+}
+
+.vs-pulse {
+  animation: vs-pulse 2s ease-in-out infinite;
+}
