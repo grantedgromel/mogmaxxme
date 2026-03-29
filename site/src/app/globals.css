@@ -166,3 +166,25 @@ body {
 .scale-up {
   animation: scale-up 0.25s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
+
+/* Flexing wojak animation */
+@keyframes flex-left {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-6deg) scale(1.04); }
+}
+
+@keyframes flex-right {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(6deg) scale(1.04); }
+}
+
+.flex-wojak .flex-arm-left {
+  transform-origin: 115px 125px;
+  animation: flex-left 0.8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+.flex-wojak .flex-arm-right {
+  transform-origin: 185px 125px;
+  animation: flex-right 0.8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  animation-delay: 0.4s;
+}

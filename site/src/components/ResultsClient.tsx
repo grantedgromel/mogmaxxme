@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { archetypes } from "@/lib/archetypes";
+import FlexingWojak from "@/components/FlexingWojak";
 
 const loadingMessages = [
   "Scanning muscle groups...",
@@ -20,7 +21,6 @@ export default function ResultsClient({
   const [loading, setLoading] = useState(true);
   const [messageIdx, setMessageIdx] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [photo, setPhoto] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   const idx = Math.min(
@@ -28,16 +28,6 @@ export default function ResultsClient({
     archetypes.length - 1
   );
   const archetype = archetypes[idx];
-
-  // Load photo from sessionStorage
-  useEffect(() => {
-    try {
-      const stored = sessionStorage.getItem("mogmaxxme-photo");
-      if (stored) setPhoto(stored);
-    } catch {
-      // sessionStorage unavailable
-    }
-  }, []);
 
   // Loading sequence
   useEffect(() => {
@@ -72,18 +62,10 @@ export default function ResultsClient({
   if (loading) {
     return (
       <main className="min-h-screen flex flex-col items-center justify-center px-6">
-        <div className="w-full max-w-sm">
-          {photo && (
-            <div className="mb-8 flex justify-center">
-              <img
-                src={photo}
-                alt="Your photo"
-                className="w-32 h-32 object-cover rounded-xl opacity-60"
-              />
-            </div>
-          )}
+        <div className="w-full max-w-sm flex flex-col items-center">
+          <FlexingWojak />
 
-          <p className="text-foreground font-medium text-center mb-6">
+          <p className="text-foreground font-medium text-center mb-6 mt-6">
             {loadingMessages[messageIdx]}
           </p>
 
@@ -120,34 +102,15 @@ export default function ResultsClient({
 
         {/* Results card */}
         <div className="w-full rounded-xl border border-border bg-card overflow-hidden flex flex-col md:flex-row">
-          {/* Left: user photo + archetype portrait */}
-          <div className="md:w-80 shrink-0 bg-muted p-6 sm:p-8 flex flex-col items-center justify-center gap-6">
-            {photo ? (
-              <div className="relative">
-                <img
-                  src={photo}
-                  alt="Your photo"
-                  className="w-40 h-40 sm:w-48 sm:h-48 object-cover rounded-xl"
-                />
-                <div className="absolute -bottom-2 -right-2 bg-foreground text-background text-xs font-bold px-2 py-1 rounded-lg">
-                  {archetype.tier}-Tier
-                </div>
-              </div>
-            ) : (
-              <div className="w-40 h-40 sm:w-48 sm:h-48 rounded-xl bg-border flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">No photo</span>
-              </div>
-            )}
-
-            <div className="w-24 h-24 sm:w-28 sm:h-28">
-              <Image
-                src={archetype.image}
-                alt={archetype.name}
-                width={112}
-                height={112}
-                className="w-full h-full object-contain"
-              />
-            </div>
+          {/* Left: archetype portrait */}
+          <div className="md:w-72 shrink-0 bg-muted flex items-center justify-center p-8">
+            <Image
+              src={archetype.image}
+              alt={archetype.name}
+              width={240}
+              height={240}
+              className="w-48 h-48 sm:w-56 sm:h-56 object-contain"
+            />
           </div>
 
           {/* Right: info */}
