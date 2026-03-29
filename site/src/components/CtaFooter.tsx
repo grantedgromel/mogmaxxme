@@ -1,8 +1,11 @@
+import Link from "next/link";
+import AnimateOnScroll from "@/components/AnimateOnScroll";
+
 export default function CtaFooter() {
   return (
     <>
       <section className="py-24 px-6 bg-muted">
-        <div className="max-w-3xl mx-auto">
+        <AnimateOnScroll className="max-w-3xl mx-auto">
           <h2 className="font-display text-4xl sm:text-5xl font-bold text-foreground mb-6">
             Stop dodging the mirror, bro
           </h2>
@@ -11,16 +14,16 @@ export default function CtaFooter() {
             your tier. Deal with it.
           </p>
 
-          <a
-            href="#"
-            className="inline-flex items-center justify-center px-10 py-4 bg-foreground text-background text-lg font-semibold rounded-lg hover:opacity-90 transition-opacity"
+          <Link
+            href="/upload"
+            className="inline-flex items-center justify-center px-10 py-4 bg-foreground text-background text-lg font-semibold rounded-lg hover:opacity-90 transition-all duration-200 active:scale-[0.98]"
           >
             Get mogged now
-          </a>
+          </Link>
           <p className="text-sm text-muted-foreground mt-4">
             No sign-up required. Instant results.
           </p>
-        </div>
+        </AnimateOnScroll>
       </section>
 
       <footer className="py-8 px-6 border-t border-border">

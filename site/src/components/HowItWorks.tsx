@@ -1,7 +1,9 @@
+import AnimateOnScroll from "@/components/AnimateOnScroll";
+
 export default function HowItWorks() {
   return (
     <section id="how-it-works" className="py-24 px-6 bg-muted">
-      <div className="max-w-5xl mx-auto">
+      <AnimateOnScroll className="max-w-5xl mx-auto">
         <div className="max-w-2xl mb-16">
           <h2 className="font-display text-4xl sm:text-5xl font-bold text-foreground mb-4">
             How it works
@@ -51,7 +53,7 @@ export default function HowItWorks() {
             </p>
           </div>
         </div>
-      </div>
+      </AnimateOnScroll>
     </section>
   );
 }

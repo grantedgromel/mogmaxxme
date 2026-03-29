@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 
 export default function Hero() {
@@ -21,15 +22,15 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="#tier-list"
-              className="inline-flex items-center justify-center px-8 py-3.5 bg-foreground text-background font-semibold rounded-lg hover:opacity-90 transition-opacity"
+            <Link
+              href="/upload"
+              className="inline-flex items-center justify-center px-8 py-3.5 bg-foreground text-background font-semibold rounded-lg hover:opacity-90 transition-all duration-200 active:scale-[0.98]"
             >
               Find your tier
-            </a>
+            </Link>
             <a
               href="#how-it-works"
-              className="inline-flex items-center justify-center px-8 py-3.5 border border-border text-foreground font-medium rounded-lg hover:bg-muted transition-colors"
+              className="inline-flex items-center justify-center px-8 py-3.5 border border-border text-foreground font-medium rounded-lg hover:bg-muted transition-all duration-200 active:scale-[0.98]"
             >
               How it works
             </a>
