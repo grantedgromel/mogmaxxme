@@ -39,21 +39,18 @@ export default function Hero() {
 
         {/* Mascot side */}
         <div className="relative flex justify-center lg:justify-end">
-          <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
+          <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-[420px] lg:h-[420px]">
             <div className="absolute inset-0 bg-muted rounded-2xl -rotate-3" />
-            <div className="relative rounded-2xl overflow-hidden border border-border bg-card p-4">
+            <div className="relative rounded-2xl overflow-hidden border border-border bg-card">
               <Image
-                src="/gigachad-s-tier.gif"
-                alt="S-Tier Gigachad"
-                width={384}
-                height={384}
+                src="/gigachad-hero.gif"
+                alt="Gigachad"
+                width={420}
+                height={420}
                 unoptimized
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover"
                 priority
               />
-            </div>
-            <div className="absolute -bottom-3 -right-3 bg-foreground text-background text-sm font-bold px-3 py-1.5 rounded-lg">
-              S-Tier
             </div>
           </div>
         </div>

@@ -64,25 +64,25 @@ export default function ResultsClient({
   if (loading) {
     return (
       <main className="min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
-        <div className="w-full max-w-sm flex flex-col items-center">
+        <div className="w-full max-w-lg flex flex-col items-center">
           {/* Ascending Gigachad */}
-          <div className="relative w-48 h-64 sm:w-56 sm:h-72 mb-6 overflow-hidden rounded-xl">
+          <div className="relative w-72 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[28rem] mb-8 overflow-hidden rounded-xl">
             <img
               src="/gigachad-loading.gif"
               alt="Gigachad ascending"
-              className="absolute left-0 w-full object-contain transition-all duration-700 ease-out"
+              className="absolute left-0 w-full h-full object-cover transition-all duration-700 ease-out"
               style={{
                 bottom: `${-ascendY}%`,
               }}
             />
           </div>
 
-          <p className="text-foreground font-medium text-center mb-6">
+          <p className="text-lg sm:text-xl text-foreground font-medium text-center mb-6">
             {loadingMessages[messageIdx]}
           </p>
 
           {/* Progress bar */}
-          <div className="w-full h-1 bg-muted rounded-full overflow-hidden">
+          <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden">
             <div
               className="h-full bg-foreground rounded-full transition-all duration-500 ease-out"
               style={{ width: `${progress}%` }}
