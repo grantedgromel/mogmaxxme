@@ -186,10 +186,10 @@ export default function TierList() {
         >
           <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
 
-          <div className="relative w-full max-w-2xl rounded-xl border border-border bg-card shadow-lg scale-up overflow-hidden">
+          <div className="relative w-full max-w-3xl rounded-xl border border-border bg-card shadow-lg scale-up overflow-hidden flex flex-col sm:flex-row">
             <button
               onClick={close}
-              className="absolute top-5 right-5 z-10 text-muted-foreground hover:text-foreground transition-colors"
+              className="absolute top-4 right-4 z-10 text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Close"
             >
               <svg
@@ -204,19 +204,19 @@ export default function TierList() {
               </svg>
             </button>
 
-            {/* Large portrait */}
-            <div className="bg-muted flex items-center justify-center p-8 sm:p-12">
+            {/* Portrait - left side, full height */}
+            <div className="sm:w-64 md:w-72 shrink-0 bg-muted flex items-center justify-center p-8 sm:p-6">
               <Image
                 src={selected.image}
                 alt={selected.name}
-                width={240}
-                height={240}
-                className="w-48 h-48 sm:w-60 sm:h-60 object-contain"
+                width={280}
+                height={280}
+                className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 object-contain"
               />
             </div>
 
-            {/* Info */}
-            <div className="p-6 sm:p-8">
+            {/* Info - right side */}
+            <div className="flex-1 p-6 sm:p-8 flex flex-col justify-center">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-sm font-bold px-2.5 py-1 rounded bg-foreground text-background">
                   {selected.tier}-Tier
