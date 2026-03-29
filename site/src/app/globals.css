@@ -33,12 +33,12 @@
   --secondary-foreground: #171717;
   --destructive-foreground: #ffffff;
 
-  --tier-s: #d4a017;
-  --tier-a: #1a8c4e;
-  --tier-b: #2563b0;
-  --tier-c: #b8941a;
-  --tier-d: #c4561a;
-  --tier-f: #c42b2b;
+  --tier-s: #171717;
+  --tier-a: #404040;
+  --tier-b: #525252;
+  --tier-c: #737373;
+  --tier-d: #8a8a8a;
+  --tier-f: #a1a1a1;
 }
 
 .dark {
@@ -62,6 +62,13 @@
   --primary-foreground: #0a0a0a;
   --secondary-foreground: #fafafa;
   --destructive-foreground: #ffffff;
+
+  --tier-s: #fafafa;
+  --tier-a: #d4d4d4;
+  --tier-b: #a1a1a1;
+  --tier-c: #737373;
+  --tier-d: #525252;
+  --tier-f: #404040;
 }
 
 @theme inline {

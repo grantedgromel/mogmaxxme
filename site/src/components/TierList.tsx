@@ -72,14 +72,14 @@ const archetypes: Archetype[] = [
     name: "Dad Bod Boomer",
     image: "/archetypes/D-Tier Dad Bod Boomer.png",
     description:
-      "This man peaked sometime around the first iPhone launch and the mustache confirms it. The tank top is doing a lot of heavy lifting -- more than he's done in years. Somewhere under the dad bod is a guy who used to arm wrestle his buddies at the bar. That guy clocked out a long time ago. So did the metabolism.",
+      "This man swears the weights used to be heavier back in his day. The mustache is doing more work than he's done in years. Owns three grills and thinks that counts as a personality. The tank top is structural at this point -- take it off and the whole operation collapses. Somewhere under there is a guy who could do ten pull-ups. He tells you about it constantly. He cannot do one now.",
   },
   {
     tier: "D",
     name: "Discord Mod Bro",
     image: "/archetypes/D-Tier Discord Mod Bro.png",
     description:
-      'This guy looks like he moderates three anime servers and hasn\'t touched grass since COVID lockdowns ended. The physique says "my cardio is walking to the fridge" and the expression says he knows it. Time to log off, close the laptop, and find out what sunlight feels like. The gym is right there, bro. It\'s been right there the whole time.',
+      "This guy has three anime body pillows and calls them his \"roommates.\" Moderates five servers, has opinions about waifus, and hasn't been outside long enough for his eyes to adjust to natural light. The physique says \"my cardio is typing in all caps\" and the expression says he's one bad take away from a ban appeal essay. The gym is right there, bro. It's been right there the whole time.",
   },
   {
     tier: "D",
@@ -99,13 +99,13 @@ const archetypes: Archetype[] = [
 
 const tiers = ["S", "A", "B", "C", "D", "F"] as const;
 
-const tierConfig: Record<string, { bg: string; label: string; text: string }> = {
-  S: { bg: "bg-tier-s/10", label: "bg-tier-s", text: "text-tier-s" },
-  A: { bg: "bg-tier-a/10", label: "bg-tier-a", text: "text-tier-a" },
-  B: { bg: "bg-tier-b/10", label: "bg-tier-b", text: "text-tier-b" },
-  C: { bg: "bg-tier-c/10", label: "bg-tier-c", text: "text-tier-c" },
-  D: { bg: "bg-tier-d/10", label: "bg-tier-d", text: "text-tier-d" },
-  F: { bg: "bg-tier-f/10", label: "bg-tier-f", text: "text-tier-f" },
+const tierLabels: Record<string, string> = {
+  S: "S",
+  A: "A",
+  B: "B",
+  C: "C",
+  D: "D",
+  F: "F",
 };
 
 export default function TierList() {
@@ -136,18 +136,15 @@ export default function TierList() {
 
         <div className="space-y-1.5">
           {tiers.map((tier) => {
-            const config = tierConfig[tier];
             const members = archetypes.filter((a) => a.tier === tier);
             return (
               <div
                 key={tier}
-                className={`flex items-stretch rounded-lg overflow-hidden ${config.bg}`}
+                className="flex items-stretch rounded-lg overflow-hidden bg-muted"
               >
-                <div
-                  className={`flex items-center justify-center w-14 sm:w-16 ${config.label} shrink-0`}
-                >
-                  <span className="text-white text-xl sm:text-2xl font-bold">
-                    {tier}
+                <div className="flex items-center justify-center w-14 sm:w-16 bg-foreground shrink-0">
+                  <span className="text-background text-xl sm:text-2xl font-bold">
+                    {tierLabels[tier]}
                   </span>
                 </div>
 
@@ -189,53 +186,49 @@ export default function TierList() {
         >
           <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
 
-          <div className="relative w-full max-w-lg rounded-xl border border-border bg-card p-6 sm:p-8 shadow-lg scale-up">
+          <div className="relative w-full max-w-2xl rounded-xl border border-border bg-card shadow-lg scale-up overflow-hidden">
             <button
               onClick={close}
-              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+              className="absolute top-5 right-5 z-10 text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Close"
             >
               <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
               >
-                <path d="M5 5l10 10M15 5L5 15" />
+                <path d="M6 6l12 12M18 6L6 18" />
               </svg>
             </button>
 
-            <div className="flex gap-5 items-start">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 shrink-0 rounded-lg overflow-hidden border border-border bg-muted p-2">
-                <Image
-                  src={selected.image}
-                  alt={selected.name}
-                  width={112}
-                  height={112}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="flex-1 min-w-0 pt-1">
-                <div className="flex items-center gap-2.5 mb-1">
-                  <span
-                    className={`text-xs font-bold px-2 py-0.5 rounded ${
-                      tierConfig[selected.tier].label
-                    } text-white`}
-                  >
-                    {selected.tier}
-                  </span>
-                  <h3 className="font-display text-xl font-bold text-foreground">
-                    {selected.name}
-                  </h3>
-                </div>
-              </div>
+            {/* Large portrait */}
+            <div className="bg-muted flex items-center justify-center p-8 sm:p-12">
+              <Image
+                src={selected.image}
+                alt={selected.name}
+                width={240}
+                height={240}
+                className="w-48 h-48 sm:w-60 sm:h-60 object-contain"
+              />
             </div>
 
-            <p className="text-muted-foreground leading-relaxed mt-5">
-              {selected.description}
-            </p>
+            {/* Info */}
+            <div className="p-6 sm:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-sm font-bold px-2.5 py-1 rounded bg-foreground text-background">
+                  {selected.tier}-Tier
+                </span>
+                <h3 className="font-display text-2xl font-bold text-foreground">
+                  {selected.name}
+                </h3>
+              </div>
+              <p className="text-muted-foreground leading-relaxed text-base">
+                {selected.description}
+              </p>
+            </div>
           </div>
         </div>
       )}
