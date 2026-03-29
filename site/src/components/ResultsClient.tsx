@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { archetypes } from "@/lib/archetypes";
-import FlexingWojak from "@/components/FlexingWojak";
-
 const loadingMessages = [
   "Scanning muscle groups...",
   "Measuring proportions...",
@@ -59,13 +57,27 @@ export default function ResultsClient({
     });
   };
 
+  // Gigachad ascends from bottom to top as progress increases
+  // At 0% he's at the bottom, at 100% he's at the top
+  const ascendY = 100 - progress;
+
   if (loading) {
     return (
-      <main className="min-h-screen flex flex-col items-center justify-center px-6">
+      <main className="min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
         <div className="w-full max-w-sm flex flex-col items-center">
-          <FlexingWojak />
+          {/* Ascending Gigachad */}
+          <div className="relative w-48 h-64 sm:w-56 sm:h-72 mb-6 overflow-hidden rounded-xl">
+            <img
+              src="/gigachad-ascending.gif"
+              alt="Gigachad ascending"
+              className="absolute left-0 w-full object-contain transition-all duration-700 ease-out"
+              style={{
+                bottom: `${-ascendY}%`,
+              }}
+            />
+          </div>
 
-          <p className="text-foreground font-medium text-center mb-6 mt-6">
+          <p className="text-foreground font-medium text-center mb-6">
             {loadingMessages[messageIdx]}
           </p>
 
