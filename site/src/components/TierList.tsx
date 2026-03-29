@@ -60,6 +60,7 @@ export default function TierList() {
                           alt={archetype.name}
                           width={80}
                           height={80}
+                          unoptimized={archetype.image.endsWith(".gif")}
                           className="w-full h-full object-contain p-0.5"
                         />
                       </div>
@@ -110,6 +111,7 @@ export default function TierList() {
                 alt={selected.name}
                 width={280}
                 height={280}
+                unoptimized={selected.image.endsWith(".gif")}
                 className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 object-contain"
               />
             </div>

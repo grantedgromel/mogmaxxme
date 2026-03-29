@@ -43,10 +43,11 @@ export default function Hero() {
             <div className="absolute inset-0 bg-muted rounded-2xl -rotate-3" />
             <div className="relative rounded-2xl overflow-hidden border border-border bg-card p-4">
               <Image
-                src="/archetypes/S-Tier Gigachad.png"
+                src="/gigachad-s-tier.gif"
                 alt="S-Tier Gigachad"
                 width={384}
                 height={384}
+                unoptimized
                 className="w-full h-full object-contain"
                 priority
               />

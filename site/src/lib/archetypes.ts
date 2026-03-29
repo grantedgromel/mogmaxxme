@@ -9,7 +9,7 @@ export const archetypes: Archetype[] = [
   {
     tier: "S",
     name: "Gigachad",
-    image: "/archetypes/S-Tier Gigachad.png",
+    image: "/gigachad-s-tier.gif",
     description:
       "You're good fam. Have a good rest of your day, sir.",
   },

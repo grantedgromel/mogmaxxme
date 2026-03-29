@@ -68,7 +68,7 @@ export default function ResultsClient({
           {/* Ascending Gigachad */}
           <div className="relative w-48 h-64 sm:w-56 sm:h-72 mb-6 overflow-hidden rounded-xl">
             <img
-              src="/gigachad-ascending.gif"
+              src="/gigachad-loading.gif"
               alt="Gigachad ascending"
               className="absolute left-0 w-full object-contain transition-all duration-700 ease-out"
               style={{
@@ -121,6 +121,7 @@ export default function ResultsClient({
               alt={archetype.name}
               width={240}
               height={240}
+              unoptimized={archetype.image.endsWith(".gif")}
               className="w-48 h-48 sm:w-56 sm:h-56 object-contain"
             />
           </div>
